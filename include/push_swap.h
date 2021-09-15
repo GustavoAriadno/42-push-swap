@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 03:05:27 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/14 06:16:52 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/15 23:15:22 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "libft.h"
 
 # define NEARGS "Not enough arguments!"
@@ -22,16 +23,28 @@
 # define NOTNUM "Input not number!"
 # define NOTINT "Input not integer!"
 
+# define SA "sa"
+# define SB "sb"
+# define SS "ss"
+# define PA "pa"
+# define PB "pb"
+# define RA "ra"
+# define RB "rb"
+# define RR "rr"
+# define RRA "rra"
+# define RRB "rrb"
+# define RRR "rrr"
+
 typedef struct	s_stack
 {
-	int				*num;
+	int				num;
 	struct s_stack	*previous;
 	struct s_stack	*next;
 }	t_stack;
 
 char	**get_inp(int argc, char **args);
 
-t_stack	*lst_new(int *num);
+t_stack	*lst_new(int num);
 void	lstadd_back(t_stack **stack, t_stack *new);
 void	lstadd_front(t_stack **stack, t_stack *new);
 t_stack	*lst_last(t_stack *stack);
@@ -40,8 +53,15 @@ t_stack	*lst_last(t_stack *stack);
 int	check_if_args_are_invalid(char **args);
 
 
-void	free_lst(t_stack **stack);
-void	free_mat(char **mat);
+void	swap(t_stack **stack, char *opstr);
+void	push(t_stack **a, t_stack **b, char *opstr);
+void	rotate(t_stack **stack);
+void	rev_rotate(t_stack **stack);
+
+
+
+void	free_lst(t_stack *stack);
+void	free_mat(char **matrix);
 void	free_exit(char **mat);
 
 #endif

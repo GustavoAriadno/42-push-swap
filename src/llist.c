@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 20:41:21 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/14 06:16:28 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/15 20:59:00 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	lstadd_back(t_stack **stack, t_stack *new)
 {
 	t_stack *last;
 
-	if (!stack)
-		return ;
 	last = lst_last(*stack);
 	if (last != NULL)
+	{
 		last->next = new;
+		new->previous = last;
+	}
 	else
 		*stack = new;
 }
@@ -45,7 +46,7 @@ void	lstadd_front(t_stack **stack, t_stack *new)
 	*stack = new;
 }
 
-t_stack	*lst_new(int *num)
+t_stack	*lst_new(int num)
 {
 	t_stack	*new;
 

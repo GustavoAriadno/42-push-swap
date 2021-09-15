@@ -6,32 +6,32 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:04:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/12 20:43:31 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/15 03:50:45 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-void	free_lst(t_stack **stack)
+void	free_lst(t_stack *stack)
 {
 	t_stack	*tmp;
 
 	if (!stack)
 		return ;
-	while(*stack)
+	while(stack)
 	{
-		tmp = (*stack)->next;
-		free((*stack)->num);
-		free(*stack);
-		(*stack) = tmp;
+		tmp = stack->next;
+		free(stack);
+		stack = tmp;
 	}
 }
 
 void	free_mat(char **matrix)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!matrix)
 		return ;
 	while (matrix[i])

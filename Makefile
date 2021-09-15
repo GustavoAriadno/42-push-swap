@@ -6,7 +6,9 @@ C_FLAGS	=	-c		\
 			-Wextra	\
 			-Werror	\
 			-I${INCLUDE}	\
-			-I./${LIB_DIR}
+			-I./${LIB_DIR} 
+# C_FLAGS	+=	-g -fsanitize=address
+
 
 INCLUDE	=	./include
 
@@ -14,11 +16,12 @@ LIB_DIR	=	libft
 LIBFT	=	${LIB_DIR}/libft.a
 
 SRC_DIR	=	src
-SRC		=	push_swap.c	\
+SRC		=	operations.c\
+			push_swap.c	\
 			input.c		\
 			llist.c		\
-			free.c		\
-			check.c
+			check.c		\
+			free.c
 
 vpath %.c ${SRC_DIR}
 
@@ -29,7 +32,9 @@ OBJ		=	$(patsubst %.c, ${OBJ_DIR}/%.o, ${SRC})
 all		:	${NAME}
 
 ${NAME}	:	${OBJ} ${LIBFT}
-			${CC} -o $@ $^
+			${CC} -o $@ $^ -g -fsanitize=address
+
+#${CC} -o $@ $^
 
 ${LIBFT}:
 			${MAKE} -C ${LIB_DIR}
