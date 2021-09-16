@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 20:21:13 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:23:10 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/27 15:21:28 by gariadno          #+#    #+#             */
+/*   Updated: 2021/05/19 21:43:03 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-char	**fill_args(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	**array;
-	int		i;
+	unsigned int	i;
+	char			*str;
 
-	if (argc < 0 || !argv)
+	if (!s)
 		return (NULL);
-	array = malloc(sizeof(char *) * (argc + 1));
-	if (!array)
+	str = (char *)malloc(ft_strlen(s) + 1);
+	if (!str)
 		return (NULL);
-	i = -1;
-	while (++i < argc)
-		array[i] = ft_strdup(argv[i]);
-	array[i] = NULL;
-	return (array);
-}
-
-char	**get_inp(int argc, char **argv)
-{
-	if (argc == 1)
-		return (ft_split(argv[1], ' '));
-	else if (argc > 1)
-		return (fill_args(argc, &(argv[1])));
-	return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = (*f)(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

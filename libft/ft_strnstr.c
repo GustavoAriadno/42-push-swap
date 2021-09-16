@@ -1,47 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 21:04:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:21:57 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/20 19:40:50 by gariadno          #+#    #+#             */
+/*   Updated: 2021/05/19 21:40:57 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
 
-void	free_lst(t_stack *stack)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	t_stack	*tmp;
-
-	if (!stack)
-		return ;
-	while (stack)
-	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
-	}
-}
-
-void	free_mat(char **matrix)
-{
-	int	i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-void	free_exit(char **mat)
-{
-	free_mat(mat);
-	ft_putendl_fd("Error", STDERR_FILENO);
-	exit(-1);
+	if (*needle == '\0')
+		return ((char *)haystack);
+	while (haystack[i] != '\0' && i != len)
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j]
+			&& needle[j] != '\0' && (i + j) != len)
+			j++;
+		if (needle[j] == '\0')
+			return ((char *)&haystack[i]);
+		i++;
+	}
+	return (0);
 }

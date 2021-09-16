@@ -1,47 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 21:04:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:21:57 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/20 15:09:47 by gariadno          #+#    #+#             */
+/*   Updated: 2021/06/25 08:42:53 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
 
-void	free_lst(t_stack *stack)
-{
-	t_stack	*tmp;
-
-	if (!stack)
-		return ;
-	while (stack)
-	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
-	}
-}
-
-void	free_mat(char **matrix)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	res;
+	int	signal;
 
 	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-void	free_exit(char **mat)
-{
-	free_mat(mat);
-	ft_putendl_fd("Error", STDERR_FILENO);
-	exit(-1);
+	res = 0;
+	signal = 1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			signal = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	return (res * signal);
 }

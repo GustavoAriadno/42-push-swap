@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	check_if_there_are_duplicates(char **args)
+int	there_are_duplicates(char **args)
 {
 	int	i;
 	int	j;
@@ -18,15 +18,27 @@ int	check_if_there_are_duplicates(char **args)
 	return (0);
 }
 
-int	check_if_args_are_invalid(char **args)
+int	args_are_invalid(char **args)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (args[++i])
-		if (!ft_strisnum(args[i]) ||
-			ft_strlen(args[i]) > 11 ||
-			(ft_strlen(args[i]) == 11 && args[i][0] != '-'))
+		if (!ft_strisnum(args[i])
+			|| ft_strlen(args[i]) > 11
+			|| (ft_strlen(args[i]) == 11 && args[i][0] != '-'))
 			return (1);
-	return (check_if_there_are_duplicates(args));
+	return (there_are_duplicates(args));
+}
+
+int	is_sorted(t_stack *stack)
+{
+	while (stack)
+	{
+		if (stack->next)
+			if (stack->num > stack->next->num)
+				return (0);
+		stack = stack->next;
+	}
+	return (1);
 }

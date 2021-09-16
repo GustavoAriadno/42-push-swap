@@ -2,24 +2,24 @@
 
 void	swap(t_stack **stack, char *opstr)
 {
-	t_stack *second;
+	t_stack	*tmp;
 
 	if (!(*stack)->next)
 		return ;
-	second = (*stack)->next;
-	if (second->next)
-		second->next->previous = *stack;
-	(*stack)->previous = second;
-	(*stack)->next = second->next;
-	second->previous = NULL;
-	second->next = *stack;
-	*stack = second;
+	tmp = (*stack)->next;
+	if (tmp->next)
+		tmp->next->previous = *stack;
+	(*stack)->previous = tmp;
+	(*stack)->next = tmp->next;
+	tmp->previous = NULL;
+	tmp->next = *stack;
+	*stack = tmp;
 	ft_putendl_fd(opstr, STDOUT_FILENO);
 }
 
 void	push(t_stack **dst, t_stack **src, char *opstr)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if (!src || !*src)
 		return ;
@@ -29,7 +29,7 @@ void	push(t_stack **dst, t_stack **src, char *opstr)
 		tmp = (*src)->next;
 		tmp->previous = NULL;
 	}
-	if(dst && *dst)
+	if (dst && *dst)
 		(*dst)->previous = *src;
 	(*src)->next = *dst;
 	*dst = *src;
@@ -37,9 +37,9 @@ void	push(t_stack **dst, t_stack **src, char *opstr)
 	ft_putendl_fd(opstr, STDOUT_FILENO);
 }
 
-void	rotate(t_stack **stack)
+void	rotate(t_stack **stack, char *opstr)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
@@ -49,11 +49,12 @@ void	rotate(t_stack **stack)
 	(*stack)->previous = tmp;
 	*stack = (*stack)->next;
 	tmp->next->next = NULL;
+	ft_putendl_fd(opstr, STDOUT_FILENO);
 }
 
-void	rev_rotate(t_stack **stack)
+void	rev_rotate(t_stack **stack, char *opstr)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
@@ -63,4 +64,5 @@ void	rev_rotate(t_stack **stack)
 	tmp->next = *stack;
 	(*stack)->previous = tmp;
 	*stack = tmp;
+	ft_putendl_fd(opstr, STDOUT_FILENO);
 }

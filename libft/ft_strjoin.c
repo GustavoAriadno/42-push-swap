@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 20:21:13 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:23:10 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/25 11:44:57 by gariadno          #+#    #+#             */
+/*   Updated: 2021/05/19 21:46:54 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-char	**fill_args(int argc, char **argv)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	**array;
-	int		i;
+	char	*str;
+	size_t	len1;
+	size_t	len2;
 
-	if (argc < 0 || !argv)
+	if (!s1)
 		return (NULL);
-	array = malloc(sizeof(char *) * (argc + 1));
-	if (!array)
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	str = (char *)malloc(len1 + len2 + 1);
+	if (!str)
 		return (NULL);
-	i = -1;
-	while (++i < argc)
-		array[i] = ft_strdup(argv[i]);
-	array[i] = NULL;
-	return (array);
-}
-
-char	**get_inp(int argc, char **argv)
-{
-	if (argc == 1)
-		return (ft_split(argv[1], ' '));
-	else if (argc > 1)
-		return (fill_args(argc, &(argv[1])));
-	return (NULL);
+	ft_memcpy(str, s1, len1);
+	ft_memcpy(str + len1, s2, len2);
+	str[len1 + len2] = '\0';
+	return (str);
 }

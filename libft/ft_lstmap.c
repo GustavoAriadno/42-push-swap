@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 20:21:13 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:23:10 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/31 10:46:08 by gariadno          #+#    #+#             */
+/*   Updated: 2021/05/19 21:51:35 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-char	**fill_args(int argc, char **argv)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	**array;
-	int		i;
+	t_list	*temp;
+	t_list	*new;
+	t_list	*first;
 
-	if (argc < 0 || !argv)
+	if (!lst)
 		return (NULL);
-	array = malloc(sizeof(char *) * (argc + 1));
-	if (!array)
+	new = ft_lstnew(f(lst->content));
+	if (!new)
 		return (NULL);
-	i = -1;
-	while (++i < argc)
-		array[i] = ft_strdup(argv[i]);
-	array[i] = NULL;
-	return (array);
-}
-
-char	**get_inp(int argc, char **argv)
-{
-	if (argc == 1)
-		return (ft_split(argv[1], ' '));
-	else if (argc > 1)
-		return (fill_args(argc, &(argv[1])));
-	return (NULL);
+	first = new;
+	lst = lst->next;
+	while (lst)
+	{
+		temp = ft_lstnew(f(lst->content));
+		if (!temp)
+		{
+			ft_lstclear(&first, del);
+			return (NULL);
+		}
+		new->next = temp;
+		new = new->next;
+		lst = lst->next;
+	}
+	return (first);
 }

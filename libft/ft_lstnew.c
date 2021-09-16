@@ -1,47 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 21:04:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:21:57 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/28 19:47:24 by gariadno          #+#    #+#             */
+/*   Updated: 2021/05/19 21:52:27 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
 
-void	free_lst(t_stack *stack)
+t_list	*ft_lstnew(void *content)
 {
-	t_stack	*tmp;
+	t_list	*list;
 
-	if (!stack)
-		return ;
-	while (stack)
-	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
-	}
-}
-
-void	free_mat(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-void	free_exit(char **mat)
-{
-	free_mat(mat);
-	ft_putendl_fd("Error", STDERR_FILENO);
-	exit(-1);
+	list = malloc(sizeof(t_list));
+	if (!list)
+		return (NULL);
+	list->content = content;
+	list->next = NULL;
+	return (list);
 }

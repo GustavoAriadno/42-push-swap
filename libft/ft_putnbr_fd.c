@@ -1,47 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 21:04:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:21:57 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/25 14:38:05 by gariadno          #+#    #+#             */
+/*   Updated: 2021/05/19 21:42:11 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
 
-void	free_lst(t_stack *stack)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_stack	*tmp;
+	unsigned int	x;
 
-	if (!stack)
-		return ;
-	while (stack)
+	if (n < 0)
 	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
+		write(fd, "-", 1);
+		x = n * -1;
 	}
-}
-
-void	free_mat(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-void	free_exit(char **mat)
-{
-	free_mat(mat);
-	ft_putendl_fd("Error", STDERR_FILENO);
-	exit(-1);
+	else
+		x = n;
+	if (x < 10 && x >= 0)
+		ft_putchar_fd(x % 10 + 48, fd);
+	else if (x >= 10)
+	{
+		ft_putnbr_fd(x / 10, fd);
+		ft_putnbr_fd(x % 10, fd);
+	}
 }

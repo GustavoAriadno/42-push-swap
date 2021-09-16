@@ -1,47 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 21:04:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 18:21:57 by gariadno         ###   ########.fr       */
+/*   Created: 2020/01/22 16:38:34 by gariadno          #+#    #+#             */
+/*   Updated: 2021/05/19 21:48:40 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
 
-void	free_lst(t_stack *stack)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_stack	*tmp;
+	void	*spc;
 
-	if (!stack)
-		return ;
-	while (stack)
-	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
-	}
-}
-
-void	free_mat(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-void	free_exit(char **mat)
-{
-	free_mat(mat);
-	ft_putendl_fd("Error", STDERR_FILENO);
-	exit(-1);
+	spc = malloc(count * size);
+	if (!spc)
+		return (0);
+	ft_bzero(spc, count * size);
+	return (spc);
 }

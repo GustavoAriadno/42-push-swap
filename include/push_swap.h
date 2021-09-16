@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 03:05:27 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/15 23:15:22 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/17 00:16:30 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,20 @@ char	**get_inp(int argc, char **args);
 
 t_stack	*lst_new(int num);
 void	lstadd_back(t_stack **stack, t_stack *new);
-void	lstadd_front(t_stack **stack, t_stack *new);
 t_stack	*lst_last(t_stack *stack);
+int		lst_len(t_stack *stack);
 
 
-int	check_if_args_are_invalid(char **args);
+int		args_are_invalid(char **args);
+int		is_sorted(t_stack *stack);
+
+void	start_sort(t_stack **a, t_stack **b);
 
 
 void	swap(t_stack **stack, char *opstr);
 void	push(t_stack **a, t_stack **b, char *opstr);
-void	rotate(t_stack **stack);
-void	rev_rotate(t_stack **stack);
-
+void	rotate(t_stack **stack, char *opstr);
+void	rev_rotate(t_stack **stack, char *opstr);
 
 
 void	free_lst(t_stack *stack);

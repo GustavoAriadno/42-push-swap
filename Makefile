@@ -21,7 +21,8 @@ SRC		=	operations.c\
 			input.c		\
 			llist.c		\
 			check.c		\
-			free.c
+			free.c		\
+			sort.c
 
 vpath %.c ${SRC_DIR}
 
