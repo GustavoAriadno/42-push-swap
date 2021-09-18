@@ -17,10 +17,9 @@ LIBFT	=	${LIB_DIR}/libft.a
 
 SRC_DIR	=	src
 SRC		=	operations.c\
-			push_swap.c	\
-			input.c		\
 			llist.c		\
 			check.c		\
+			main.c		\
 			free.c		\
 			sort.c
 

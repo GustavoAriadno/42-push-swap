@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 03:05:27 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/17 00:16:30 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/18 20:13:02 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct	s_stack
 	struct s_stack	*previous;
 	struct s_stack	*next;
 }	t_stack;
-
-char	**get_inp(int argc, char **args);
 
 t_stack	*lst_new(int num);
 void	lstadd_back(t_stack **stack, t_stack *new);
