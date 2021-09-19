@@ -1,4 +1,3 @@
-
 #include "push_swap.h"
 
 void	sort_three(t_stack **a)
@@ -41,6 +40,6 @@ void	start_sort(t_stack **a, t_stack **b)
 	stklen = lst_len(*a);
 	if (stklen <= 5)
 		sort_few(a, b, stklen);
-	// else
-	// 	sort_many(a, b);
+	else
+		sort_many(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:27:57 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/18 20:12:55 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/19 18:57:38 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ int	main(int argc, char *argv[])
 	if (!is_sorted(a))
 		start_sort(&a, &b);
 	free_lst(a);
-	printf("Ok!");
 	return (0);
 }

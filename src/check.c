@@ -10,9 +10,9 @@ int	there_are_duplicates(char **args)
 	while (args[++i])
 	{
 		j = i;
-		cmplen = ft_strlen(args[i]);
+		cmplen = ft_strlen(args[i]) + 1;
 		while (args[++j])
-			if (ft_strncmp(args[i], args[j], cmplen + ft_strlen(args[j])) == 0)
+			if (ft_strncmp(args[i], args[j], cmplen) == 0)
 				return (1);
 	}
 	return (0);
@@ -37,6 +37,18 @@ int	is_sorted(t_stack *stack)
 	{
 		if (stack->next)
 			if (stack->num > stack->next->num)
+				return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
+int	is_lownb_sorted(t_stack *stack)
+{
+	while (stack)
+	{
+		if (stack->next)
+			if (stack->next->num - stack->num != 1)
 				return (0);
 		stack = stack->next;
 	}

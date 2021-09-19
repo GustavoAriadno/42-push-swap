@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 20:41:21 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/16 20:41:12 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/19 19:01:31 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	lstadd_back(t_stack **stack, t_stack *new)
 		*stack = new;
 }
 
-int		lst_len(t_stack *stack)
+int	lst_len(t_stack *stack)
 {
 	int	len;
 

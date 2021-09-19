@@ -17,6 +17,7 @@ LIBFT	=	${LIB_DIR}/libft.a
 
 SRC_DIR	=	src
 SRC		=	operations.c\
+			sort_many.c	\
 			llist.c		\
 			check.c		\
 			main.c		\
@@ -34,14 +35,15 @@ all		:	${NAME}
 ${NAME}	:	${OBJ} ${LIBFT}
 			${CC} -o $@ $^ -g -fsanitize=address
 
-#${CC} -o $@ $^
+# ${CC} -o $@ $^ -g
+
 
 ${LIBFT}:
 			${MAKE} -C ${LIB_DIR}
 
 ${OBJ_DIR}/%.o	:	%.c
 			mkdir -p ${OBJ_DIR}
-			${CC} ${C_FLAGS} $< -o $@
+			${CC} ${C_FLAGS} -g $< -o $@
 
 # test	:
 
