@@ -1,63 +1,88 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   sort_many.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/20 02:13:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/20 02:13:45 by gariadno         ###   ########.fr       */
+/*   Created: 2021/09/20 02:14:01 by gariadno          #+#    #+#             */
+/*   Updated: 2021/09/20 20:03:17 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack **a)
+int	lower_numbers(t_stack **radix, t_stack *origin)
 {
-	t_stack	*highest;
-	t_stack	*tmp;
+	t_stack	*aux;
+	t_stack	*first_el;
+	int		bigger_than;
 
-	highest = *a;
-	tmp = (*a)->next;
-	while (tmp)
+	first_el = origin;
+	while (origin)
 	{
-		if (highest->num < tmp->num)
-			highest = tmp;
-		tmp = tmp->next;
+		aux = first_el;
+		bigger_than = 0;
+		while (aux)
+		{
+			if (origin->num > aux->num)
+				bigger_than++;
+			aux = aux->next;
+		}
+		aux = lst_new(bigger_than);
+		if (!aux)
+			break ;
+		lstadd_back(radix, aux);
+		origin = origin->next;
 	}
-	if (highest == *a)
-		rotate(a, RA);
-	else if (highest == (*a)->next)
-		rev_rotate(a, RRA);
-	if ((*a)->num > (*a)->next->num)
-		swap(a, SA);
+	if (origin)
+		return (1);
+	return (0);
 }
 
-void	sort_four(t_stack **a, t_stack **b)
+void	radix(t_stack **a, t_stack **b)
 {
+	int	bit_place;
+	int	stack_len;
+
+	bit_place = 0b00000001;
+	while (!is_sorted(*a))
+	{
+		stack_len = lst_len(*a);
+		while (stack_len)
+		{
+			if (((*a)->num & bit_place))
+				rotate(a, RA);
+			else
+				push(b, a, PB);
+			if (is_lownb_sorted(*a))
+				break ;
+			stack_len--;
+		}
+		while (*b)
+			push(a, b, PA);
+		bit_place <<= 1;
+	}
 }
 
-void	sort_five(t_stack **a, t_stack **b)
+void	sort_many(t_stack **a, t_stack **b)
 {
+	t_stack	*radix_stack;
+
+	radix_stack = NULL;
+	if (lower_numbers(&radix_stack, *a))
+	{
+		free_lst(*a);
+		free_lst(radix_stack);
+		ft_putendl_fd("Error", STDERR_FILENO);
+		exit(-1);
+	}
+	radix(&radix_stack, b);
+	free_lst(radix_stack);
 }
 
-void	sort_few(t_stack **a, t_stack **b, int stklen)
+void	start_sort(t_stack **a, t_stack **b, int stklen)
 {
-	if (stklen == 2)
-		swap(a, SA);
-	if (stklen == 3)
-		sort_three(a);
-	if (stklen == 4)
-		sort_four(a, b);
-	if (stklen == 5)
-		sort_five(a, b);
-}
-
-void	start_sort(t_stack **a, t_stack **b)
-{
-	int	stklen;
-
-	stklen = lst_len(*a);
 	if (stklen <= 5)
 		sort_few(a, b, stklen);
 	else

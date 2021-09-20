@@ -8,7 +8,6 @@ C_FLAGS	=	-c		\
 			-I${INCLUDE}	\
 			-I./${LIB_DIR} 
 
-
 INCLUDE	=	./include
 
 LIB_DIR	=	libft
@@ -16,7 +15,7 @@ LIBFT	=	${LIB_DIR}/libft.a
 
 SRC_DIR	=	src
 SRC		=	operations.c\
-			sort_many.c	\
+			sort_few.c	\
 			llist.c		\
 			check.c		\
 			main.c		\
@@ -33,8 +32,6 @@ all		:	${NAME}
 
 ${NAME}	:	${OBJ} ${LIBFT}
 			${CC} -o $@ $^ -g -fsanitize=address
-# ${CC} -o $@ $^ -g
-
 
 ${LIBFT}:
 			${MAKE} -C ${LIB_DIR}
@@ -42,8 +39,6 @@ ${LIBFT}:
 ${OBJ_DIR}/%.o	:	%.c
 			mkdir -p ${OBJ_DIR}
 			${CC} ${C_FLAGS} -g $< -o $@
-
-# test	:
 
 clean	:
 			rm -rf ${OBJ}

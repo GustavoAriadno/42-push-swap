@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:27:57 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/19 18:57:38 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/20 19:51:51 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ int	main(int argc, char *argv[])
 	t_stack	*b;
 
 	args = get_inp(--argc, argv);
-	if (!args || args_are_invalid(args))
+	if (!args || are_args_invalid(args))
 		free_exit(args);
 	a = create_stack(args);
 	b = NULL;
 	if (!is_sorted(a))
-		start_sort(&a, &b);
+		start_sort(&a, &b, lst_len(a));
 	free_lst(a);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 20:41:21 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/19 19:01:31 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/20 19:51:12 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,6 @@ void	lstadd_back(t_stack **stack, t_stack *new)
 		*stack = new;
 }
 
-int	lst_len(t_stack *stack)
-{
-	int	len;
-
-	len = 0;
-	while (stack)
-	{
-		len++;
-		stack = stack->next;
-	}
-	return (len);
-}
-
 t_stack	*lst_new(int num)
 {
 	t_stack	*new;
@@ -61,4 +48,17 @@ t_stack	*lst_new(int num)
 	new->previous = NULL;
 	new->next = NULL;
 	return (new);
+}
+
+int	lst_len(t_stack *stack)
+{
+	int	len;
+
+	len = 0;
+	while (stack)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
 }

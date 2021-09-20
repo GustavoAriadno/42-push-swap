@@ -6,34 +6,25 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 03:05:27 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/20 02:10:38 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/20 20:27:11 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
 # include "libft.h"
 
-# define NEARGS "Not enough arguments!"
-# define MALERR "Malloc error!"
-# define NOTNUM "Input not number!"
-# define NOTINT "Input not integer!"
-
 # define SA "sa"
 # define SB "sb"
-# define SS "ss"
 # define PA "pa"
 # define PB "pb"
 # define RA "ra"
 # define RB "rb"
-# define RR "rr"
 # define RRA "rra"
 # define RRB "rrb"
-# define RRR "rrr"
 
 typedef struct s_stack
 {
@@ -42,17 +33,17 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+t_stack	*lst_last(t_stack *stack);
 t_stack	*lst_new(int num);
 void	lstadd_back(t_stack **stack, t_stack *new);
-t_stack	*lst_last(t_stack *stack);
 int		lst_len(t_stack *stack);
 
-int		args_are_invalid(char **args);
+int		are_args_invalid(char **args);
 int		is_sorted(t_stack *stack);
 int		is_lownb_sorted(t_stack *stack);
 
-void	start_sort(t_stack **a, t_stack **b);
-void	sort_many(t_stack **a, t_stack **b);
+void	start_sort(t_stack **a, t_stack **b, int stklen);
+void	sort_few(t_stack **a, t_stack **b, int stklen);
 
 void	swap(t_stack **stack, char *opstr);
 void	push(t_stack **dst, t_stack **src, char *opstr);

@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 02:14:58 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/20 02:14:59 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/20 20:02:49 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	there_are_duplicates(char **args)
 	return (0);
 }
 
-int	args_are_invalid(char **args)
+int	are_args_invalid(char **args)
 {
 	int	i;
 
