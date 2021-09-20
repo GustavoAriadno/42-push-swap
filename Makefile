@@ -41,9 +41,11 @@ ${OBJ_DIR}/%.o	:	%.c
 			${CC} ${C_FLAGS} -g $< -o $@
 
 clean	:
-			rm -rf ${OBJ}
+			${MAKE} clean -C ${LIB_DIR}
+			rm -rf ${OBJ_DIR}
 
 fclean	:	clean
+			${MAKE} fclean -C ${LIB_DIR}
 			rm -rf ${NAME}
 
 re		:	fclean all

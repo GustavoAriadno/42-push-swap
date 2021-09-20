@@ -6,7 +6,7 @@
 /*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 02:13:44 by gariadno          #+#    #+#             */
-/*   Updated: 2021/09/20 20:26:34 by gariadno         ###   ########.fr       */
+/*   Updated: 2021/09/20 20:49:52 by gariadno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,9 @@ void	sort_three(t_stack **a)
 		swap(a, SA);
 }
 
-
 void	sort_four(t_stack **a, t_stack **b)
 {
-	int bigger_than;
+	int	bigger_than;
 
 	bigger_than = top_is_bigger_than((*a)->num, (*a)->next, 3);
 	if (bigger_than == 2)
@@ -69,7 +68,7 @@ void	sort_four(t_stack **a, t_stack **b)
 
 void	sort_five(t_stack **a, t_stack **b)
 {
-	int bigger_than;
+	int	bigger_than;
 
 	while (1)
 	{
