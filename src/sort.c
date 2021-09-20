@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/20 02:13:44 by gariadno          #+#    #+#             */
+/*   Updated: 2021/09/20 02:13:45 by gariadno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_three(t_stack **a)
 {
-	t_stack *highest;
-	t_stack *tmp;
+	t_stack	*highest;
+	t_stack	*tmp;
 
 	highest = *a;
 	tmp = (*a)->next;
@@ -21,18 +33,26 @@ void	sort_three(t_stack **a)
 		swap(a, SA);
 }
 
+void	sort_four(t_stack **a, t_stack **b)
+{
+}
+
+void	sort_five(t_stack **a, t_stack **b)
+{
+}
+
 void	sort_few(t_stack **a, t_stack **b, int stklen)
 {
 	if (stklen == 2)
 		swap(a, SA);
 	if (stklen == 3)
 		sort_three(a);
-	// if (stklen == 4)
-	// 	sort_four(a, b);
-	// if (stklen == 5)
-	// 	sort_five(a, b);
-	(void)b;
+	if (stklen == 4)
+		sort_four(a, b);
+	if (stklen == 5)
+		sort_five(a, b);
 }
+
 void	start_sort(t_stack **a, t_stack **b)
 {
 	int	stklen;

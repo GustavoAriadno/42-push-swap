@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_many.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gariadno <gariadno@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/20 02:14:01 by gariadno          #+#    #+#             */
+/*   Updated: 2021/09/20 02:14:02 by gariadno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	lower_numbers(t_stack **radix, t_stack *origin)
@@ -33,7 +45,7 @@ void	radix(t_stack **a, t_stack **b)
 	int	bit_place;
 	int	stack_len;
 
-	bit_place = 1;
+	bit_place = 0b00000001;
 	while (!is_sorted(*a))
 	{
 		stack_len = lst_len(*a);
@@ -49,7 +61,7 @@ void	radix(t_stack **a, t_stack **b)
 		}
 		while (*b)
 			push(a, b, PA);
-		bit_place *= 2;
+		bit_place <<= 1;
 	}
 }
 

@@ -7,7 +7,6 @@ C_FLAGS	=	-c		\
 			-Werror	\
 			-I${INCLUDE}	\
 			-I./${LIB_DIR} 
-# C_FLAGS	+=	-g -fsanitize=address
 
 
 INCLUDE	=	./include
@@ -34,7 +33,6 @@ all		:	${NAME}
 
 ${NAME}	:	${OBJ} ${LIBFT}
 			${CC} -o $@ $^ -g -fsanitize=address
-
 # ${CC} -o $@ $^ -g
 
 
